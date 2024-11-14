@@ -1,0 +1,52 @@
+{% extends 'navbar/projectnavbar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+{% block body %}
+<div align="center">
+    <h2>Register</h2>
+    <form method="post" action="{% url 'UserRegisterLogic' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td align="right">Username:</td>
+                <td><input type="text" name="username" required></td>
+            </tr>
+            <tr>
+                <td align="right">First Name:</td>
+                <td><input type="text" name="first_name" required></td>
+            </tr>
+            <tr>
+                <td align="right">Last Name:</td>
+                <td><input type="text" name="last_name" required></td>
+            </tr>
+            <tr>
+                <td align="right">Email:</td>
+                <td><input type="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td align="right">Password:</td>
+                <td><input type="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td align="right">Confirm Password:</td>
+                <td><input type="password" name="confirm_password" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Register">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{% endblock %}
+
+</body>
+</html>
