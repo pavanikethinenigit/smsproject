@@ -1,0 +1,131 @@
+<!-- contacts/templates/contacts/view_contacts.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Contacts - Contact Manager</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #357ab7;
+        }
+        ul {
+            list-style-type: none;
+        }
+        li {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        li:hover {
+            transform: translateY(-2px);
+        }
+        strong {
+            color: #4a90e2;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #ff5c5c;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #d93d3d;
+        }
+        .add-contact {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .add-contact:hover {
+            background-color: #218838;
+        }
+        .no-contacts {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contacts List</h1>
+        <form method="get" action="{% url 'view_contacts' %}">
+            <input type="text" name="search" placeholder="Search by name or email" value="{{ request.GET.search }}">
+            <button type="submit">Search</button>
+        </form>
+        <ul>
+            {% for contact in contacts %}
+                <li>
+                    <strong>Name:</strong> {{ contact.name }}<br>
+                    <strong>Email:</strong> {{ contact.email }}<br>
+                    <strong>Phone:</strong> {{ contact.phone_number }}<br>
+                    <strong>Address:</strong> {{ contact.address }}<br>
+                    <a href="{% url 'delete_contact' contact.id %}">Delete</a>
+                </li>
+            {% empty %}
+                <p class="no-contacts">No contacts found.</p>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_contact' %}" class="add-contact">Add New Contact</a>
+    </div>
+</body>
+</html>

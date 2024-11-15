@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System Feedback Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f8e9; /* Soft green background */
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #4caf50;
+        }
+        h2 {
+            text-align: center;
+            color: #388e3c;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 16px;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #81c784;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus, select:focus {
+            border-color: #388e3c; /* Change border on focus */
+        }
+        textarea {
+            resize: vertical;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #388e3c;
+        }
+        .highlight-section {
+            background-color: #e8f5e9; /* Light green for section */
+            padding: 15px;
+            border-left: 5px solid #66bb6a;
+            margin-bottom: 20px;
+        }
+        .highlight-section p {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Management System Feedback</h2>
+
+    <form action="{% url 'submit_feedback' %}" method="POST">
+        {% csrf_token %}
+
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your name...">
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email...">
+
+        <label for="phone">Your Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number...">
+
+        <label for="experience">How is your overall experience with the Student Management System?</label><br>
+        <input type="radio" id="excellent" name="experience" value="Excellent">
+        <label for="excellent">Excellent</label><br>
+        <input type="radio" id="good" name="experience" value="Good">
+        <label for="good">Good</label><br>
+        <input type="radio" id="average" name="experience" value="Average">
+        <label for="average">Average</label><br>
+        <input type="radio" id="poor" name="experience" value="Poor">
+        <label for="poor">Poor</label><br><br>
+
+        <label for="usability">How easy is it to use the app?</label>
+        <select id="usability" name="usability">
+            <option value="Very Easy">Very Easy</option>
+            <option value="Easy">Easy</option>
+            <option value="Neutral">Neutral</option>
+            <option value="Difficult">Difficult</option>
+            <option value="Very Difficult">Very Difficult</option>
+        </select>
+
+        <label for="features">What feature do you use the most?</label>
+        <input type="text" id="features" name="features" placeholder="Mention a feature...">
+
+        <label for="comments">Any additional feedback or suggestions?</label>
+        <textarea id="comments" name="comments" rows="4" placeholder="Your feedback here..."></textarea>
+
+        <div class="highlight-section">
+            <p><strong>Would you recommend this system to others?</strong></p>
+            <input type="radio" id="recommend_yes" name="recommend" value="Yes">
+            <label for="recommend_yes">Yes</label><br>
+            <input type="radio" id="recommend_no" name="recommend" value="No">
+            <label for="recommend_no">No</label>
+        </div>
+
+        <input type="submit" value="Submit Feedback">
+
+    </form>
+</div>
+
+</body>
+</html>

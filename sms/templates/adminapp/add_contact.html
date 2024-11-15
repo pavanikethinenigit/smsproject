@@ -1,0 +1,89 @@
+<!-- contacts/templates/contacts/add_contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contact - Contact Manager</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        /* Form Container Styling */
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px 30px;
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+        }
+        /* Form Styling */
+        form label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: inline-block;
+            color: #333;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        /* Link Styling */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add a New Contact</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <label for="recipient_email">Recipient Email:</label>
+            <input type="email" name="recipient_email" id="recipient_email" required placeholder="Enter recipient email">
+            <button type="submit">Save Contact</button>
+        </form>
+        <a href="{% url 'view_contacts' %}" class="back-link">Back to Contact List</a>
+    </div>
+</body>
+</html>

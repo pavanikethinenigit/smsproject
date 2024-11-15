@@ -1,0 +1,36 @@
+<!-- contacts/templates/contacts/view_contacts.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Contacts - Contact Manager</title>
+    <style>
+        /* Your existing styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contacts List</h1>
+        <form method="get" action="{% url 'view_contacts' %}">
+            <input type="text" name="search" placeholder="Search by name or email" value="{{ request.GET.search }}">
+            <button type="submit">Search</button>
+        </form>
+        <ul>
+            {% for contact in contacts %}
+                <li>
+                    <strong>Name:</strong> {{ contact.name }}<br>
+                    <strong>Email:</strong> {{ contact.email }}<br>
+                    <strong>Phone:</strong> {{ contact.phone_number }}<br>
+                    <strong>Address:</strong> {{ contact.address }}<br>
+                    <a href="?delete_contact_id={{ contact.id }}">Delete</a>
+                </li>
+            {% empty %}
+                <p class="no-contacts">No contacts found.</p>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_contact' %}" class="add-contact">Add New Contact</a>
+    </div>
+</body>
+</html>
